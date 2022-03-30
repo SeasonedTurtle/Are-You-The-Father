@@ -3,7 +3,7 @@ import consts as const
 
 class Game():
     def __init__(self):
-        self.playing, self.clicked = True, False
+        self.playing, self.clicked = const.started, False
 
     def gameLoop(self):
         while self.playing:

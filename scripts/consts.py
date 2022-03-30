@@ -5,14 +5,18 @@ pygame.font.init()
 
 width = 810
 height = 810
+
 black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
 red = (255, 0, 0)
-fps = 10
+purple = (106, 13, 173)
+
 path = os.getcwd() + os.sep
 font = path + "styles/LeagueSpartan-Bold.otf"
 icon = pygame.image.load(path + "styles/ICON.png")
+
+started = False
 
 window = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
