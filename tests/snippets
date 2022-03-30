@@ -1,0 +1,21 @@
+    def grid(self):
+        size = int(const.height / 90)
+        for x in range(0, const.width, size):
+            for y in range(0, const.height, size):
+                if not y % 2:
+                    color = const.red
+                else:
+                    color = const.blue 
+                rect = pygame.Rect(x, y, size, size)
+                pygame.draw.rect(self.window, color, rect, 2)
+
+    def drawCircles(self):
+        circleSize = 25
+        for x in range(0, const.width, circleSize):
+            for y in range(0, const.height, circleSize):
+                if not y % 2:
+                    color = const.red
+                else:
+                    color = const.blue  
+                pygame.draw.circle(self.window, color, (x, y), 2, 1)
+
