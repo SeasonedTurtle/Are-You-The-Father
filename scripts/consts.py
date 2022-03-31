@@ -1,4 +1,4 @@
-import pygame, time, sys, os
+import pygame, sys, os
 
 pygame.init()
 pygame.font.init()
@@ -26,7 +26,6 @@ pygame.display.set_caption("Create Performance Task")
 pygame.display.set_icon(icon)
 
 cursor = pygame.image.load(path + "styles/download.png").convert()
-cursorRect = cursor.get_rect()
 
 def quit():
     pygame.font.quit()
@@ -40,15 +39,9 @@ def createText(text, font, color, target, posX, posY):
     target.blit(text, textBox)             
 
 def gameCursor():
+    _clock = pygame.time.Clock()
+    cursorRect = cursor.get_rect()
     cursorRect.center = pygame.mouse.get_pos()
     window.blit(cursor, cursorRect)
     pygame.display.flip()
-
-def talking(text):
-    for char in text:
-        print(char, end="")
-        sys.stdout.flush()
-        if (char == "\n"):
-            time.sleep(1)
-        else:
-            time.sleep(0.4)
+    _clock.tick(30)

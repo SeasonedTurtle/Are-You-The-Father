@@ -22,11 +22,12 @@ class mainMenu(object):
 
         for x in range(25, const.width - 25, circleSize):
             for y in range(25, const.height - 25, circleSize):
-                if not now % 3:
+                if now % 2 == 0:
                     color = const.purple
                 else:
                     color = const.blue  
                 pygame.draw.circle(const.window, color, (x, y), 2, 2)
+        pygame.time.wait(100)
 
     def gui(self):
         const.createText("Are YOU", self.bigFont, self.textColor, const.window, 100, 50)
