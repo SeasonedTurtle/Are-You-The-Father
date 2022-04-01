@@ -1,45 +1,55 @@
-import pygame 
-import consts as const
+import pygame, consts
 
-class Game():
+class Game(consts.Constants):
     def __init__(self):
-        self.playing, self.clicked = const.started, False
-        self.dialogueFont = pygame.font.Font(const.font, 25)
+        consts.Constants.__init__(self)
+        self.playing, self.clicked = consts.started, False
+        self.dialogueFont = pygame.font.Font(self.font, 25)
         self.fps = 10
+        self.currentScene = 1
 
-    def dialogue(self, text):
+    def capitalCheck(self, char):
+        letters = "abcdefghijklmnopqrstuvwxyz"
+        for letter in letters:
+            if char == letter:
+                return True
+        
+    def dialogue(self, text, color):
         j = 0
-        speed = int(len(text) / 10 * 300)
-        posY = int(const.height * 0.5)
-        posX = int(const.width * 0.5 - 30)
+        speed = int(len(text) / 3 * 100)
+        posY = int(self.height * 0.5)
+        posX = int(self.width * 0.5 - 30)
         for i in range(0, len(text)):
-            j += 15
-            if text[i] == "\n":
-                const.createText(text[i], self.dialogueFont, const.white, const.window, posX + j, posY + j)
+            if self.capitalCheck(text[i]):
+                j += 14
             else:
-                const.createText(text[i], self.dialogueFont, const.white, const.window, posX + j, posY)
+                j += 15
+            self.createText(text[i], self.dialogueFont, color, self.window, posX + j, posY)
             pygame.display.update()
             pygame.time.wait(speed)
 
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                const.quit()
+                self.quit()
             elif event.type == pygame.KEYDOWN:
                 if pygame.K_ESCAPE:
-                    const.quit()
+                    self.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.clicked = True
     
-    def gameLoop(self):
-        const.window.fill(const.black)
+    def loadingScreen(self, sceneNumber):
+        self.window.fill(self.black)
         pygame.time.delay(500)
-        self.dialogue("Scene 1")
+        self.dialogue("Scene " + str(sceneNumber), self.white)
+
+    def gameLoop(self):
+        self.loadingScreen(self.currentScene)
         while self.playing:
-            const.window.fill(const.white)
-            const.gameCursor()
+            self.window.fill(self.white)
+            self.gameCursor()
             self.events()
+            self.dialogue("ldasjfkl;sajdl;fkja;skldfjoiweohjlvcnbdjkupwert", self.purple)
             pygame.display.update()
-            const.clock.tick(self.fps)
-            self.clicked = False
+            self.clock.tick(self.fps)
