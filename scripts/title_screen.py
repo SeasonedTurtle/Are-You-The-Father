@@ -28,7 +28,7 @@ class mainMenu(consts.Constants):
                 if now % 2:
                     self.color = self.colors[random.randint(0, 7)]
                 pygame.draw.circle(self.window, self.color, (x, y), 2, 2)
-        pygame.time.wait(45)
+        pygame.time.wait(75)
 
     def gui(self):
         self.createText("Are YOU", self.bigFont, self.textColor, self.window, 100, 50)

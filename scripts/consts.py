@@ -1,4 +1,4 @@
-import pygame, sys, paths
+import pygame, sys, paths, os
 
 started = False
 
@@ -12,13 +12,14 @@ class Constants(object):
         self.white = (255, 255, 255)
         self.blue = (0, 0, 255)
         self.purple = (106, 13, 173)
-        self.font = paths.styles + "LeagueSpartan-Bold.otf"
+        self.font = paths.styles + "Inconsolata-Regular.ttf"
         self.icon = pygame.image.load(paths.styles + "ICON.png")
-        self.window = pygame.display.set_mode((self.width, self.height))
+        self.window = pygame.display.set_mode((self.width, self.height)) 
         self.clock = pygame.time.Clock()
         pygame.display.set_icon(self.icon)
         pygame.mouse.set_visible(False)
         self.cursor = pygame.image.load(paths.styles + "download.png").convert()
+        self.frames = []
 
     def quit(self):
         pygame.font.quit()
@@ -36,3 +37,9 @@ class Constants(object):
         cursorRect.center = pygame.mouse.get_pos()
         self.window.blit(self.cursor, cursorRect)
         pygame.display.flip()
+
+    # Path will need to change once more directories are added
+    def initScenes(self, frames):
+        for i in range(0, 3):
+            frames.append(pygame.image.load(paths.scenes + "images" + str(i) + ".jpg").convert())
+        return frames
