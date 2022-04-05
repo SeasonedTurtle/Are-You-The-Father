@@ -1,8 +1,8 @@
-import os
+from os import chdir, getcwd, sep
 
-os.chdir("../")
-path = os.getcwd() + os.sep
+chdir("../")
+path = getcwd() + sep
 
-styles = path + "styles" + os.sep
-sounds = path + "sounds" + os.sep
-scenes = path + "scenes" + os.sep
+styles = path + "styles" + sep
+sounds = path + "sounds" + sep
+scenes = path + "scenes" + sep

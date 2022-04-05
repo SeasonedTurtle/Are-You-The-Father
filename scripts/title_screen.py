@@ -8,15 +8,12 @@ class mainMenu(consts.Constants):
         self.buttonColor = self.white
         self.titleSize = 125
         self.subtitleSize = int(self.titleSize * 0.3)
-        self.textboxSize = int(self.titleSize * 0.25)
         self.bigFont = pygame.font.Font(self.font, self.titleSize)
         self.smallFont = pygame.font.Font(self.font, self.subtitleSize)
-        self.textboxFont = pygame.font.Font(self.font, self.textboxSize)
         self.running, self.clicked = True, False
         self.startButton = pygame.Rect(self.width * 0.5 - 100, self.height * 0.5 + 150, self.width * 0.25, self.height * .0625)
         self.quitButton = pygame.Rect(self.width * 0.5 - 100, self.height * 0.5 + 220, self.width * 0.25, self.height * .0625)
         self.color = self.blue
-        self.colors = [(216,191,216), (221,160,221), (40, 0, 255), (85, 0, 255), (128, 0, 255), (175, 0, 255), (238,130,238), (255, 0, 255)]
 
     def drawCircles(self):
         count = 0
@@ -46,8 +43,7 @@ class mainMenu(consts.Constants):
         if self.startButton.collidepoint((mouseX, mouseY)) and self.clicked:
                 self.running = False
                 consts.started = True
-        elif self.quitButton.collidepoint((mouseX, mouseY)):
-            if self.clicked:
+        elif self.quitButton.collidepoint((mouseX, mouseY)) and self.clicked:
                 self.quit()
         else:
             self.clicked = False
