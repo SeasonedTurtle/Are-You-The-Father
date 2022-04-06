@@ -43,7 +43,7 @@ class Constants(object):
         pygame.display.flip()
     
     # Path will need to change once more directories are added
-    def initScenes(self, frames):
-        for i in range(0, 3):
+    def initScenes(self, frames, fileAmount):
+        for i in range(0, fileAmount):
             frames.append(pygame.image.load(paths.scenes + "images" + str(i) + ".jpg").convert())
         return frames
