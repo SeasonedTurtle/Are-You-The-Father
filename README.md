@@ -1,4 +1,7 @@
 # Are-You-The-Father
 Create Performance Task
-Clone this repository and open the main folder "Are You The Father" 
-then go into the scripts folder and run main.py to run the code.
+
+Requirements: 
+  - Latest versions of pygame. (It can be downloaded here -> https://www.pygame.org/news)
+  - Python version 3 or higher. (It can be downloaded here -> https://www.python.org/downloads/)
+  - Sense of humor

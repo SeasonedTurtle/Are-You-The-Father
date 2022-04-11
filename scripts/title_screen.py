@@ -18,7 +18,7 @@ class mainMenu(consts.Constants):
     def drawCircles(self):
         count = 0
         circleSize = 30
-        now = self.clock.tick(30)
+        now = self.clock.tick(25)
 
         for x in range(25, self.width - 25, circleSize):
             for y in range(25, self.height - 25, circleSize):
