@@ -18,7 +18,7 @@ class mainMenu(consts.Constants):
     def drawCircles(self):
         count = 0
         circleSize = 30
-        now = self.clock.tick(30)
+        now = self.clock.tick(25)
 
         for x in range(25, self.width - 25, circleSize):
             for y in range(25, self.height - 25, circleSize):
@@ -31,13 +31,13 @@ class mainMenu(consts.Constants):
         self.createText("Are YOU", self.bigFont, self.textColor, self.window, 100, 50)
         self.createText("The Father?", self.bigFont, self.textColor, self.window, 45, 300)
         self.createText("A Family Game", self.smallFont, self.textColor, self.window, 50, self.height * 0.5 + 75)
-        
+
         pygame.draw.rect(self.window, self.buttonColor, self.startButton)
         pygame.draw.rect(self.window, self.buttonColor, self.quitButton)
 
         self.createText("Start Game", self.textboxFont, self.textColor, self.window, self.width * 0.5 - 100, self.height * 0.5 + 150)
         self.createText("Quit Game", self.textboxFont, self.textColor, self.window, self.width * 0.5 - 100, self.height * 0.5 + 220)
-        
+
     def mouseInput(self):
         mouseX, mouseY = pygame.mouse.get_pos()
         if self.startButton.collidepoint((mouseX, mouseY)) and self.clicked:
@@ -56,7 +56,7 @@ class mainMenu(consts.Constants):
                 if event.button == 1:
                     self.clicked = True
 
-    def main(self): 
+    def main(self):
         while self.running:
             self.window.fill(self.backgroundColor)
             self.drawCircles()
