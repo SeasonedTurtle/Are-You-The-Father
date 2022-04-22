@@ -1,4 +1,4 @@
-import pygame, consts
+import pygame, consts, paths
 
 class Game(consts.Constants):
     def __init__(self):
@@ -112,7 +112,7 @@ class Game(consts.Constants):
         else:
             self.mouseInput("left")
 
-    def talking(self, text, posX, posY, color, offset, pos1X, pos1Y):
+    def talking(self, text, posX, posY, color, offset, pos1X, pos1Y, list):
         j = 0
         frame = 0
         if self.on:
@@ -120,9 +120,9 @@ class Game(consts.Constants):
             pygame.draw.rect(self.window, (220, 220, 220), self.textBackground)
             for i in range(0, len(text)):
                 j += 10
-                frameRect = self.frames[frame].get_rect()
+                frameRect = list[frame].get_rect()
                 frameRect.center = (pos1X, pos1Y)
-                self.window.blit(self.frames[frame], frameRect)
+                self.window.blit(list[frame], frameRect)
                 self.createText(text[i], self.dialogueFont, color, self.window, posX + j, posY)
                 self.gameFlow()
                 if i % 2 != 0:
@@ -133,7 +133,7 @@ class Game(consts.Constants):
         pygame.time.delay(500)
 
     def gameLoop(self):
-        self.initScenes("Tyrone", "V2 ", "angry ")
+        self.initScenes(paths.tyroneV1, "Tyrone", "V1", "serious ", self.tyroneV1)
         #self.tutorial()
         #self.intro(50, 800, self.moniqueIntro)
         #self.intro(50, 800, self.ZAYM)
@@ -143,7 +143,7 @@ class Game(consts.Constants):
             #self.options()
             self.pointSystem()
             if self.on:
-                self.talking("I am not the father!", 200, 750, self.purple, 125, 500, 200)
+                self.talking("I am not the father!", 200, 750, self.purple, 125, 500, 200, self.tyroneV1)
             self.on = False
             self.gameFlow()
             self.clock.tick(self.fps)

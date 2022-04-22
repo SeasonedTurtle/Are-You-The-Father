@@ -23,7 +23,7 @@ class Constants(object):
         pygame.display.set_icon(self.icon)
         pygame.mouse.set_visible(False)
         self.cursor = pygame.image.load(paths.icons + "download.png").convert()
-        self.ZAYM = pygame.image.load(paths.images + "Tyrone ZAMN-1.jpg").convert()
+        self.ZAYM = pygame.image.load(paths.images + "Tyrone ZAMNV1.jpg").convert()
         self.moniqueIntro = pygame.image.load(paths.images + "Sheniqua Angry.jpg").convert()
         self.tyroneV1 = []
         self.tyroneV2 = []
@@ -48,7 +48,7 @@ class Constants(object):
         pygame.display.flip()
 
     # Path will need to change once more directories are added
-    def initScenes(self, character, version, emotion):
+    def initScenes(self, characterFolder, character, version, emotion, list):
         for i in range(0, 2):
-            self.frames.append(pygame.image.load(paths.tyrone + character + version + "talking " + emotion + str(i) + ".jpg").convert())
-        return self.frames
+            list.append(pygame.image.load(characterFolder + character + version + " talking " + emotion + str(i) + " tr"+ ".png").convert())
+        return list
