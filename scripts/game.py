@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 from numpy import char
 import pygame, consts
+=======
+import pygame, consts, paths
+>>>>>>> Stashed changes
 
 class Game(consts.Constants):
     def __init__(self):
@@ -7,12 +11,19 @@ class Game(consts.Constants):
         self.playing, self.clicked, self.showOptions = consts.started, False, False
         self.dialogueFont = pygame.font.Font(self.font, 25)
         self.fps = 10
-        self.currentScene = 1
+        self.currentScene = 0
         self.points = 0
         self.leftButton = pygame.Rect(0, self.height - 100, self.width * 0.5, self.height - 200)
         self.rightButton = pygame.Rect(self.width * 0.5, self.height - 100, self.width, self.height - 200)
         self.textBackground = pygame.Rect(0, self.height - 100, self.width, self.height - 200)
+<<<<<<< Updated upstream
     
+=======
+        self.on = True
+
+        self.mauryStage = pygame.image.load(paths.images + "MauryStage.png").convert()
+
+>>>>>>> Stashed changes
     def gameFlow(self):
         self.events()
         pygame.display.update()
@@ -77,19 +88,24 @@ class Game(consts.Constants):
         self.gameCursor()
         mouseX, mouseY = pygame.mouse.get_pos()
         if self.leftButton.collidepoint((mouseX, mouseY)) and self.clicked:
+            self.on = True
             self.clicked = False
+            self.currentScene += 1
             if correctChoice == "left":
                 self.points += 2
             else:
                 self.points -= 1
         elif self.rightButton.collidepoint((mouseX, mouseY)) and self.clicked:
             self.clicked = False
+            self.on = True
+            self.currentScene += 1
             if correctChoice == "right":
                 self.points += 2
             else:
                 self.points -= 1
         else:
             self.clicked = False
+            self.on = False
 
     def intro(self, posX, posY, character):
         self.window.fill(self.white)
@@ -121,6 +137,7 @@ class Game(consts.Constants):
             self.mouseInput("right")
         else:
             self.mouseInput("left")
+<<<<<<< Updated upstream
             
     def gameLoop(self):
         #self.initScenes(self.frames, 3, "Baby")
@@ -134,3 +151,105 @@ class Game(consts.Constants):
             self.pointSystem()
             self.gameFlow()
             self.clock.tick(self.fps) 
+=======
+
+    def talking(self, text, posX, posY, color, offset, pos1X, pos1Y, list):
+        j = 0
+        frame = 0
+        caption = ""
+        if self.on:
+            self.window.fill(self.white)
+            speed = int(len(text) / self.fps * 100) - offset
+            for i in range(0, len(text)):
+                self.mauryStage.get_rect().center = (self.width, self.height)
+                self.window.blit(self.mauryStage, self.mauryStage.get_rect())
+                pygame.display.flip()
+                pygame.draw.rect(self.window, (220, 220, 220), self.textBackground)
+                caption += text[i]
+                self.createText(caption, self.dialogueFont, color, self.window, posX, posY) 
+                frameRect = list[frame].get_rect()
+                frameRect.center = (pos1X, pos1Y)
+                self.window.blit(list[frame], frameRect)
+                self.gameFlow()
+                if i % 2 != 0:
+                    frame += 1
+                else:
+                    frame = 0
+                pygame.time.delay(speed)
+        pygame.time.delay(500)
+
+    def sequence(self):
+        self.mauryStage.get_rect().center = (self.width, self.height)
+        self.window.blit(self.mauryStage, self.mauryStage.get_rect())
+        frameRect = self.mauryV1[0].get_rect()
+        frameRect.center = (200, 300)
+        self.window.blit(self.mauryV1[0], frameRect)
+        pygame.display.flip()
+        self.clock.tick(30)
+        self.options()
+        self.pointSystem()
+
+    def background(self):
+        self.talking("Welcome to are you the father!", 0, 750, self.purple, 150, 200, 300, self.mauryV1)
+        self.talking("Today we will be discussing the relationship", 0, 750, self.purple, 250, 200, 300, self.mauryV1)
+        self.talking("of Tyrone, Monique and their offspring Kevin.", 0, 750, self.purple, 250, 200, 300, self.mauryV1)
+
+    def scene1(self):
+        self.talking("What were you doing on the night you met?", 0, 750, self.purple, 200, 200, 300, self.mauryV1)
+
+    def scene2(self):
+        self.talking("How do you feel about Kevin?", 0, 750, self.purple, 150, 200, 300, self.mauryV1)
+    
+    def scene3(self):
+        self.talking("How did your relationship with Monique worsen?", 0, 750, self.purple, 200, 200, 300, self.mauryV1)
+
+    def scene4(self):
+        self.talking("So, why did you seperate?", 0, 750, self.purple, 150, 200, 300, self.mauryV1)
+
+    def scene5(self):
+        self.talking("How do you feel about Monique now?", 0, 750, self.purple, 150, 200, 300, self.mauryV1)
+
+    def outro(self):
+        pass
+    
+    def gameLoop(self):
+        self.initScenes(paths.tyroneV1,"Tyrone", "V1", "serious ", self.tyroneV1)
+        self.initScenes(paths.tyroneV2,"Tyrone", "V2", "angry ", self.tyroneV2)
+        self.initScenes(paths.maury,"Maury", "V1", "neutral ", self.mauryV1)
+        self.initScenes(paths.monique,"Monique", "V1", "shocked ", self.moniqueV1)
+        #self.tutorial()
+        #self.intro(50, 800, self.moniqueIntro)
+        #self.intro(50, 800, self.ZAYM)
+        while self.playing:
+            self.window.fill(self.white)
+            if self.currentScene == 0:
+                self.background()
+                self.sequence()
+                self.currentScene += 1
+            elif self.currentScene == 1 and self.clicked:
+                self.loadingScreen(self.currentScene)
+                self.scene1()
+                self.sequence()
+            elif self.currentScene == 2 and self.clicked:
+                self.loadingScreen(self.currentScene)
+                self.scene2()
+                self.sequence()
+            elif self.currentScene == 3 and self.clicked:
+                self.loadingScreen(self.currentScene)
+                self.scene3()
+                self.sequence()
+            elif self.currentScene == 4 and self.clicked:
+                self.loadingScreen(self.currentScene)
+                self.scene4()
+                self.sequence()
+            elif self.currentScene == 5 and self.clicked:
+                self.loadingScreen(self.currentScene)
+                self.scene5()
+                self.sequence()
+            elif self.currentScene == 6:
+                self.window.fill(self.black)
+                pygame.time.delay(500)
+                self.outro()
+            self.gameFlow()
+            self.clock.tick(self.fps)
+>>>>>>> Stashed changes
