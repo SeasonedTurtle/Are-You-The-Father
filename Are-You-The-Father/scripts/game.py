@@ -190,11 +190,11 @@ class Game(consts.Constants):
 
     def background(self):
         self.talking("Welcome to are you the father!", 0, 750, self.purple, 150, 200, 300, self.mauryV1, self.dialogueFont)
-        #self.talking("Today we will be discussing the relationship", 0, 750, self.purple, 250, 200, 300, self.mauryV1, self.dialogueFont)
-        #self.talking("of Tyrone, Monique and their offspring Kevin.", 0, 750, self.purple, 250, 200, 300, self.mauryV1, self.dialogueFont)
-        #self.talking("He's definitely the father!", 0, 750, self.purple, 150, 200, 300, self.moniqueV1, self.dialogueFont)
-        #self.talking("Just look at them! They look identical", 0, 750, self.purple, 220, 200, 300, self.moniqueV1, self.dialogueFont)
-        #self.talking("Well. Let's take a look everybody!", 0, 750, self.purple, 150, 200, 300, self.mauryV1, self.dialogueFont)
+        self.talking("Today we will be discussing the relationship", 0, 750, self.purple, 250, 200, 300, self.mauryV1, self.dialogueFont)
+        self.talking("of Tyrone, Monique and their offspring Kevin.", 0, 750, self.purple, 250, 200, 300, self.mauryV1, self.dialogueFont)
+        self.talking("He's definitely the father!", 0, 750, self.purple, 150, 200, 300, self.moniqueV1, self.dialogueFont)
+        self.talking("Just look at them! They look identical", 0, 750, self.purple, 220, 200, 300, self.moniqueV1, self.dialogueFont)
+        self.talking("Well. Let's take a look everybody!", 0, 750, self.purple, 150, 200, 300, self.mauryV1, self.dialogueFont)
         characters = [self.ZAYM, self.daBabyBody]
         for character in characters:
             self.window.fill(self.white)
